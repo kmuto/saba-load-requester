@@ -52,7 +52,7 @@ while true
       reload = true
       break
     end
-    puts current_status if ENV['DEBUG']
+    STDERR.puts "#{current_status}:#{v}"
 
     if v == 0
       sleep(60)
@@ -61,7 +61,7 @@ while true
 
     1.upto(v) do
       threads << Thread.new do
-        puts Time.now if ENV['DEBUG']
+        STDERR.puts Time.now if ENV['DEBUG2']
         Net::HTTP.get_response(uri)
       end
       sleep(60.to_f / v)
