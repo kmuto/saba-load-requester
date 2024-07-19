@@ -1,0 +1,12 @@
+[Unit]
+Description=post requests with specified frequency
+After=network.target
+
+[Service]
+User=<USERID>
+WorkingDirectory=<PATH>/saba-load-requester
+ExecStart=ruby saba-load-requester.rb
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
