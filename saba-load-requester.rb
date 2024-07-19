@@ -2,6 +2,8 @@
 require 'net/http'
 require 'open3'
 
+require_relative 'config'
+
 def get_status
   o, ret = Open3.capture2('mkr status -v --jq ".memo"')
   o.each_line do |l|
@@ -25,26 +27,13 @@ def make_requests(status)
   requests
 end
 
-# 5分間の実行
-MINUTES = 5
-ALB_URL = "http://localhost"
-MINUS_RANGE = 5
-
-@config = {
-  'lowload' => [20],
-  'highload' => [90],
-  'spike' => [90, 90, 20, 20, 20, 20, 20],
-  'wave' => [20, 30, 40, 50, 60, 70, 80, 90, 80, 70, 60, 50, 40, 30]
-}
-
-DEFAULT_MODE = 'lowload'
-
 uri = URI.parse(ALB_URL)
 
 current_status = DEFAULT_MODE
 requests = make_requests(current_status)
 
 reload = nil
+threads = []
 
 while true
   if reload
@@ -63,6 +52,7 @@ while true
       reload = true
       break
     end
+    puts current_status if ENV['DEBUG']
 
     if v == 0
       sleep(60)
@@ -70,7 +60,10 @@ while true
     end
 
     1.upto(v) do
-      Net::HTTP.get_response(uri)
+      threads << Thread.new do
+        puts Time.now if ENV['DEBUG']
+        Net::HTTP.get_response(uri)
+      end
       sleep(60.to_f / v)
     end
   end
