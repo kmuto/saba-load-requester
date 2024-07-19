@@ -10,4 +10,4 @@ MINUS_RANGE = 5
   'wave' => [20, 20, 30, 30, 40, 40, 50, 50, 60, 60, 70, 70, 80, 80, 90, 80, 80, 70, 70, 60, 60, 50, 50, 40, 40, 30, 30]
 }
 
-DEFAULT_MODE = 'lowload'
+DEFAULT_MODE = 'smallspike'
