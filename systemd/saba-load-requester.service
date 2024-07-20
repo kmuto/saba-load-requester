@@ -1,5 +1,5 @@
 [Unit]
-Description=post requests with specified frequency
+Description=send HTTP requests at specified frequency
 After=network.target
 
 [Service]

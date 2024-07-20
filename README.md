@@ -28,7 +28,7 @@ DEFAULT_MODE = 'smallspike'
 ```
 
 - `LB_URL`: リクエスト先のURL。ここでは[saba-memo-runner](https://github.com/kmuto/saba-memo-runner)による負荷テストをバックエンドで実行するロードバランサーを例にしている
-- `MINUTES`: リクエスト制御1設定あたりの時間。ここでは5分
+- `MINUTES`: リクエスト制御1設定あたりの分数。ここでは5
 - `MINUS_RANGE`: 1分あたりのリクエスト回数からランダムに引く値の上限。ここでは5
 - `@config`: リクエスト制御の名前および`MINUTES`分内での各分の最大リクエスト回数
 - `DEFAULT_MODE`: 指定がないときのデフォルトのリクエスト制御名

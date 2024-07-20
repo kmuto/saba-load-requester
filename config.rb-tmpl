@@ -1,5 +1,5 @@
+LB_URL = '<URL>/stress/1/5'
 MINUTES = 5
-ALB_URL = '<URL>/stress/1/5'
 MINUS_RANGE = 5
 
 @config = {
